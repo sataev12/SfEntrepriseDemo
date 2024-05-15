@@ -5,5 +5,9 @@
 {% block body %}
     <h1>Liste des entreprises</h1>
 
-    Bonjour {{ name }} !
+    {% for entreprise in entreprises %}
+        <b>{{ entreprise.raisonSociale }}</b> {{ ' (' ~ entreprise.cp ~ ' ' ~ entreprise.ville ~ ')'}}<br>
+    {% endfor %}
+
+    
 {% endblock %}
