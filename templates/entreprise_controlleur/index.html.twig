@@ -5,8 +5,12 @@
 {% block body %}
     <h1>Liste des entreprises</h1>
 
+    <a href="{{ path('new_entreprise_controlleur') }}" class="btn btn-success">Ajouter une entreprise</a><br>
     {% for entreprise in entreprises %}
-        <a href="{{ path('show_entreprise_controlleur', {'id': entreprise.id}) }}"> {{ entreprise }}</a><br>
+        <a href="{{ path('show_entreprise_controlleur', {'id': entreprise.id}) }}"> {{ entreprise }}</a>
+        <a class="btn btn-warning" href="{{ path('edit_entreprise_controlleur', {'id': entreprise.id}) }}">Edit</a>
+        <br>
+
     {% endfor %}
 
     

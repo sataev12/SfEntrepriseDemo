@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\EntrepriseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EntrepriseRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: EntrepriseRepository::class)]
 class Entreprise
@@ -35,6 +36,7 @@ class Entreprise
      * @var Collection<int, Employe>
      */
     #[ORM\OneToMany(targetEntity: Employe::class, mappedBy: 'entreprise', orphanRemoval: true)]
+    #[ORM\OrderBy(["nom" => "ASC"])]
     private Collection $employes;
 
     public function __construct()

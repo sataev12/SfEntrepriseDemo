@@ -27,14 +27,29 @@ class EntrepriseControlleurController extends AbstractController
 
     
     #[Route('/entreprise/controlleur/new', name: 'new_entreprise_controlleur')]
-    public function new(Request $request): Response
+    #[Route('/entreprise/controlleur/{id}/edit', name: 'edit_entreprise_controlleur')]
+    public function new_edit(Entreprise $entreprise = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $entreprise = new Entreprise();
+        if(!$entreprise) {
+            $entreprise = new Entreprise();
+        }
         
         $form = $this->createForm(EntrepriseType::class, $entreprise);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entreprise = $form->getData();
+            $entityManager->persist($entreprise);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_entreprise_controlleur');
+        }
         
         return $this->render('entreprise_controlleur/new.html.twig', [
             'formAddEntreprise' =>$form,
+            'edit' => $entreprise->getId()
         ]);
     }
 

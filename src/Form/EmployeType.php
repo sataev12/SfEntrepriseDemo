@@ -17,19 +17,44 @@ class EmployeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
+            ->add('nom', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('prenom', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('dateNaissance', null, [
                 'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ], DateType::class)
             ->add('dateEmbauche', null, [
                 'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ], DateType::class)
-            ->add('ville', TextType::class)
-            ->add('entreprise', EntityType::class, [
-                'class' => Entreprise::class
+            ->add('ville', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
-            ->add('valider', SubmitType::class)
+            ->add('entreprise', EntityType::class, [
+                'class' => Entreprise::class,
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('valider', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-success'
+                ]
+            ])
         ;
     }
 

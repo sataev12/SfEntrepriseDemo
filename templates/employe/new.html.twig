@@ -3,8 +3,33 @@
 {% block title %}Ajout un employe{% endblock %}
 
 {% block body %}
-    <h1>Ajout une employe</h1>
+    <h1>Ajout un employe</h1>
 
-    {{form(formAddEmploye)}}
+    {# {{form(formAddEmploye)}} #}
+
+    {{ form_start(formAddEmploye) }}
+        <div class="row">
+            <div class="col-sm">
+                {{ form_row(formAddEmploye.nom) }}    
+            </div>
+            <div class="col-sm">
+                {{ form_row(formAddEmploye.prenom) }}    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                {{ form_row(formAddEmploye.dateNaissance) }}    
+            </div>
+            <div class="col-sm">
+                {{ form_row(formAddEmploye.dateEmbauche) }}    
+            </div>
+        </div>
+        {{ form_row(formAddEmploye.entreprise) }}    
+        {{ form_row(formAddEmploye.ville) }}    
+        {{ form_row(formAddEmploye.valider) }}    
+          
+    {{ form_end(formAddEmploye) }}
+
+
     
 {% endblock %}
