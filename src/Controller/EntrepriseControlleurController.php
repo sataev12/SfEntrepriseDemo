@@ -53,6 +53,14 @@ class EntrepriseControlleurController extends AbstractController
         ]);
     }
 
+    #[Route('entreprise/controlleur/{id}/delete', name: 'delete_entreprise_controlleur')]
+    public function delete(Entreprise $entreprise, EntityManagerInterface $entityManager){
+        $entityManager->remove($entreprise);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_entreprise_controlleur');
+    }
+
     #[Route('/entreprise/controlleur/{id}', name: 'show_entreprise_controlleur')]
     public function show( Entreprise $entreprise): Response
     {
